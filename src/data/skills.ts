@@ -19,8 +19,8 @@ export const experiences: Experience[] = [
     id: "debo",
     role: "Mobile App Developer",
     company: "Debo Engineering",
-    period: "2025 – Present",
+    period: "2025 to Present",
     description:
-      "Building a mobile app for the Jimma Zone Administration ERP — interfaces and API integration for administrative services.",
+      "Building a mobile app for the Jimma Zone Administration ERP with interfaces and API integration for administrative services.",
   },
 ];

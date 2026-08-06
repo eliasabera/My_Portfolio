@@ -100,7 +100,7 @@ export function Projects() {
             <div className="mt-5 flex items-start justify-between gap-4">
               <div>
                 <p className="corner-label">
-                  {String(index + 1).padStart(2, "0")} — {project.year}
+                  {String(index + 1).padStart(2, "0")} · {project.year}
                 </p>
                 <h3 className="display mt-2 text-3xl tracking-tight text-[var(--ink)] md:text-4xl">
                   {project.title}

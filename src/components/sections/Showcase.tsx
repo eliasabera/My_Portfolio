@@ -97,7 +97,7 @@ export function Showcase() {
     <section ref={rootRef} id="rooms" className="relative">
       <div className="px-5 py-16 md:px-10">
         <p className="text-[11px] uppercase tracking-[0.32em] text-[var(--accent)]">
-          03 — Featured
+          03 · Featured
         </p>
         <h2 className="display mt-4 max-w-3xl text-4xl tracking-tight md:text-6xl">
           Featured work
@@ -148,7 +148,7 @@ export function Showcase() {
             className="relative z-10 w-full px-5 pb-16 md:px-10 md:pb-20"
           >
             <p className="text-[11px] uppercase tracking-[0.3em] text-[var(--accent-soft)]">
-              {String(index + 1).padStart(2, "0")} — {project.year}
+              {String(index + 1).padStart(2, "0")} · {project.year}
             </p>
             <h3 className="display mt-4 text-5xl tracking-tight text-white md:text-7xl">
               {project.title}

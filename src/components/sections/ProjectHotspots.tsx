@@ -156,38 +156,41 @@ export function ProjectHotspots({
 
       <nav
         aria-label="Projects"
-        className="absolute right-5 top-1/2 z-30 flex -translate-y-1/2 flex-col items-end gap-5 md:right-10 lg:right-14"
+        className="absolute right-5 top-1/2 z-30 w-[13.5rem] -translate-y-1/2 md:right-10 md:w-[16rem] lg:right-14"
       >
         <p className="text-[10px] uppercase tracking-[0.32em] text-white/70">
           Selected works
         </p>
-        {projects.map((project, i) => {
-          const isActive = i === visualIndex;
-          return (
-            <button
-              key={project.id}
-              type="button"
-              onClick={() => select(i)}
-              className={cn(
-                "group flex items-baseline gap-3 text-right transition-colors duration-500",
-                isActive ? "text-white" : "text-white/70 hover:text-white",
-              )}
-            >
-              <span
-                className={cn(
-                  "text-[11px] tabular-nums tracking-[0.2em]",
-                  isActive ? "text-[var(--accent-soft)]" : "text-white/50",
-                )}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="text-base uppercase tracking-[0.2em] md:text-lg lg:text-xl">
-                {project.title}
-              </span>
-            </button>
-          );
-        })}
-        <p className="mt-1 max-w-[10rem] text-right text-[10px] uppercase leading-relaxed tracking-[0.22em] text-white/75">
+        <ul className="mt-5 flex flex-col gap-4">
+          {projects.map((project, i) => {
+            const isActive = i === visualIndex;
+            return (
+              <li key={project.id}>
+                <button
+                  type="button"
+                  onClick={() => select(i)}
+                  className={cn(
+                    "grid w-full grid-cols-[2.25rem_minmax(0,1fr)] items-baseline gap-3 text-left transition-colors duration-500",
+                    isActive ? "text-white" : "text-white/70 hover:text-white",
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "text-[11px] tabular-nums tracking-[0.2em]",
+                      isActive ? "text-[var(--accent-soft)]" : "text-white/50",
+                    )}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-base uppercase tracking-[0.18em] md:text-lg lg:text-xl">
+                    {project.title}
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+        <p className="mt-6 text-[10px] uppercase leading-relaxed tracking-[0.22em] text-white/75">
           Details below ↓
         </p>
       </nav>
@@ -197,7 +200,7 @@ export function ProjectHotspots({
         className="absolute bottom-10 left-5 z-30 max-w-xl will-change-transform md:bottom-14 md:left-20 lg:left-24"
       >
         <p className="text-[10px] uppercase tracking-[0.32em] text-white/55">
-          {active.year} — {active.subtitle}
+          {active.year} · {active.subtitle}
         </p>
         <h2 className="display mt-3 text-2xl leading-tight tracking-tight text-white md:text-4xl lg:text-[2.75rem]">
           {active.description}

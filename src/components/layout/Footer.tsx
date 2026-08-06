@@ -1,5 +1,22 @@
 import Link from "next/link";
+import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa";
+import type { IconType } from "react-icons";
 import { siteConfig, socialLinks } from "@/data/site";
+import type { SocialLink } from "@/types";
+
+const socialIcons: Record<SocialLink["icon"], IconType> = {
+  github: FaGithub,
+  linkedin: FaLinkedinIn,
+  email: FaEnvelope,
+  twitter: FaGithub,
+};
+
+const socialColors: Record<SocialLink["icon"], string> = {
+  github: "var(--ink)",
+  linkedin: "#0a66c2",
+  email: "var(--accent)",
+  twitter: "var(--ink)",
+};
 
 export function Footer() {
   return (
@@ -11,16 +28,28 @@ export function Footer() {
             © {new Date().getFullYear()} All rights reserved
           </p>
         </div>
-        <div className="flex flex-wrap gap-5">
-          {socialLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="corner-label hover:text-[var(--ink)]"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="flex items-center gap-2">
+          {socialLinks.map((link) => {
+            const Icon = socialIcons[link.icon];
+            const color = socialColors[link.icon];
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  link.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                aria-label={link.label}
+                className="flex h-10 w-10 items-center justify-center border border-[var(--line)] transition-opacity hover:opacity-80"
+                style={{ color }}
+              >
+                <Icon size={18} aria-hidden />
+              </Link>
+            );
+          })}
         </div>
       </div>
     </footer>

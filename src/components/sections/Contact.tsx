@@ -66,22 +66,6 @@ export function Contact() {
             Get in touch
           </Link>
         </div>
-
-        <div data-contact className="mt-16 flex flex-wrap gap-6 border-t border-[var(--line)] pt-8">
-          {socialLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={
-                link.href.startsWith("http") ? "noopener noreferrer" : undefined
-              }
-              className="corner-label transition-colors hover:text-[var(--ink)]"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
       </div>
     </section>
   );

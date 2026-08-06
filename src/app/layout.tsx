@@ -17,11 +17,11 @@ const cormorant = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: {
-    default: "Elias Abera — Software Developer",
+    default: "Elias Abera · Software Developer",
     template: "%s · Elias Abera",
   },
   description:
-    "Software developer — fullstack web, mobile apps, and AI.",
+    "Software developer focused on fullstack web, mobile apps, and AI.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
