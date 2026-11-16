@@ -31,6 +31,8 @@ export type Project = {
   liveUrl?: string;
   repoUrl?: string;
   featured?: boolean;
+  /** Short points shown in the project detail */
+  highlights?: string[];
   /** Mobile app screens shown while scrolling the detail */
   screens?: ProjectScreen[];
   /** Hotspot position on the map image (percent) */

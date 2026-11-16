@@ -202,15 +202,17 @@ function WebEmbed({ project }: { project: Project }) {
 
 type ProjectDetailProps = {
   project: Project;
+  onClose?: () => void;
 };
 
 /**
  * Below the work scene — web projects embed the live site;
  * mobile projects walk through screens left/right on scroll.
  */
-export function ProjectDetail({ project }: ProjectDetailProps) {
+export function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   const screens = project.screens ?? [];
   const isMobile = project.kind === "mobile" && screens.length > 0;
+  const live = hasLiveUrl(project.liveUrl);
 
   useEffect(() => {
     resumePageScroll();
@@ -224,16 +226,60 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
       aria-label={`${project.title} detail`}
       className="relative border-t border-[var(--line)] bg-[var(--bg)] py-20 md:py-28"
     >
-      <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-14">
-        <p className="text-[10px] uppercase tracking-[0.32em] text-[var(--ink-muted)]">
-          {isMobile ? "App walkthrough" : "Live experience"}
-        </p>
-        <h2 className="display mt-3 text-4xl tracking-tight text-[var(--ink)] md:text-5xl lg:text-6xl">
-          {project.title}
-        </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--ink-muted)] md:text-base">
-          {project.description}
-        </p>
+      <div className="mx-auto flex max-w-6xl items-start justify-between gap-6 px-5 md:px-10 lg:px-14">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.32em] text-[var(--ink-muted)]">
+            {isMobile ? "App walkthrough" : live ? "Live experience" : "Project"}
+          </p>
+          <h2 className="display mt-3 text-4xl tracking-tight text-[var(--ink)] md:text-5xl lg:text-6xl">
+            {project.title}
+          </h2>
+          <p className="mt-2 text-sm text-[var(--accent)]">{project.subtitle}</p>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[var(--ink-muted)] md:text-base">
+            {project.description}
+          </p>
+          {project.highlights?.length ? (
+            <ul className="mt-8 max-w-2xl space-y-3">
+              {project.highlights.map((item) => (
+                <li
+                  key={item}
+                  className="text-sm leading-relaxed text-[var(--ink-muted)] md:text-base"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] uppercase tracking-[0.22em] text-[var(--ink-muted)]"
+              >
+                {tag}
+              </span>
+            ))}
+            {live ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[11px] uppercase tracking-[0.22em] text-[var(--accent)] transition-colors hover:text-[var(--accent-soft)]"
+              >
+                Open site ↗
+              </a>
+            ) : null}
+          </div>
+        </div>
+        {onClose ? (
+          <button
+            type="button"
+            onClick={onClose}
+            className="shrink-0 text-[11px] uppercase tracking-[0.22em] text-[var(--ink)] transition-colors hover:text-[var(--accent)]"
+          >
+            Close
+          </button>
+        ) : null}
       </div>
 
       <div className="mt-14 w-full md:mt-20">
